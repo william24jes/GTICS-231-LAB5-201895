@@ -16,7 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             nativeQuery = true)
     List<ListaTemporalDto> listarEmployee();
 
-    @Query(value = "SELECT e.employee_id,e.first_name, e.last_name, j.job_title, d.department_name, l.city FROM employees e INNER JOIN jobs j ON e.job_id = j.job_id INNER JOIN departments d ON e.department_id = d.department_id INNER JOIN locations l ON d.location_id = l.location_id WHERE lower(e.first_name) LIKE %?1% OR lower(e.last_name) LIKE %?1% OR lower(j.job_title) LIKE %?1% OR lower(l.city) LIKE %?1%",
+    @Query(value = "SELECT e.employee_id,e.first_name, e.last_name, j.job_title, d.department_name, l.city FROM employees e INNER JOIN jobs j ON e.job_id = j.job_id INNER JOIN departments d ON e.department_id = d.department_id INNER JOIN locations l ON d.location_id = l.location_id WHERE lower(e.first_name) LIKE %?1% OR lower(e.last_name) LIKE %?1% OR lower(j.job_title) LIKE %?1% OR lower(l.city) LIKE %?1% OR lower(department_name) LIKE %?1%",
             nativeQuery = true)
     List<ListaTemporalDto> buscarEmployee(String searchField);
 
