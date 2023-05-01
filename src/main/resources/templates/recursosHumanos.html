@@ -5,16 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
         <title>Home</title>
+
     </head>
-    <body>
-        <main >
-            <div class="container px-4 py-5" th:src="@{/travel_trip_logo.png}">
-                <h1 class="pb-2 border-bottom">Gestión</h1>
-                <a th:href="@{/empleado}">Empleados</a><br/>
-                <a th:href="@{/historial}">Historial</a>
-                <a th:href="@{/reporte}">Reportes</a>
-            </div>
-        </main>
+    <body style="background-image: url(/travel_trip_logo.png);background-repeat: no-repeat;height: 600px;background-size: 800px;background-position: center center">
+        <div >
+            <main >
+                <nav class="container px-4 py-5" >
+                    <h1 class="pb-2 border-bottom">Gestión</h1>
+                    <a th:href="@{/employee/listarEmployees}"><button  type="button" class="btn btn-primary">Mostrar Empleados</button></a>
+                    <a><button  type="button" class="btn btn-primary">Mostrar Historial</button></a>
+                    <a th:href="@{/reporte/menu}"><button  type="button" class="btn btn-primary">Mostrar Reportes</button></a>
+
+                </nav>
+            </main>
+        </div>
+
         <script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
     </body>
 </html>

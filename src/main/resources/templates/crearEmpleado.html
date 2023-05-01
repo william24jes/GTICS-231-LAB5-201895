@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Nuevo Ingreso</title>
+  </head>
+  <body>
+    <main>
+      <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Nuevo Ingreso</h1>
+        <form method="post" th:action="@{'/employee/save'}"  class="mt-2">
+          <input name="hire_date" type="hidden" th:value="${fechaActual}"/>
+
+
+
+          <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre</label>
+            <input name="first_name" type="text" class="form-control" id="first_name">
+          </div>
+          <div class="mb-3">
+            <label for="last_name" class="form-label">Apellido</label>
+            <input name="last_name" type="text" class="form-control" id="last_name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input name="email" type="text" class="form-control" id="email">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input name="password" type="password" class="form-control" id="password">
+              <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">Mostrar</button>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <label style="margin-top: 10px;margin-bottom: 10px" for="job" >Trabajo</label>
+            <select id="job" name="job">
+              <option th:each="job : ${listaJobs}"
+                      th:value="${job.job_id}"
+                      th:text="${job.job_title}"></option>
+            </select>
+          </div>
+          <label for="salary" class="form-label">Sueldo</label>
+          <input name="salary" type="number" step="0.01" class="form-control" id="salary">
+          <div class="col-lg-4">
+            <label style="margin-top: 10px;margin-bottom: 10px" for="manager_de_employee" >Jefe</label>
+            <select id="manager_de_employee" name="manager_de_employee">
+              <option th:each="jefe : ${listaEmpleados}"
+                      th:value="${jefe.employee_id}"
+                      th:text="${jefe.first_name+' '+jefe.last_name}"></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="department_de_employee" class="form-label">Departamento</label>
+            <input name="department_de_employee.department_id" type="number" class="form-control" id="department_de_employee">
+          </div>
+
+
+          <a th:href="@{'/employee/listarEmployees'}" class="btn btn-danger">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+
+        </form>
+      </div>
+    </main>
+    <script>
+      function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+        } else {
+          passwordInput.type = "password";
+        }
+      }
+    </script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+  </body>
+</html>
